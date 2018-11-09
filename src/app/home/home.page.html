@@ -4,7 +4,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
+<ion-content>
+  <cdk-virtual-scroll-viewport cdkDropList itemSize="20" class="example-viewport" (cdkDropListDropped)="drop($event)">
+    <ion-item *cdkVirtualFor="let p of products" class="example-item" href="/tabs/(details:{{p._id}})" cdkDrag>
+      <ion-icon name="desktop" slot="start"></ion-icon>
+      {{p.prod_name}}
+      <div class="item-note" slot="end">
+        {{p.prod_price | currency}}
+      </div>
+    </ion-item>
+  </cdk-virtual-scroll-viewport>
 </ion-content>
